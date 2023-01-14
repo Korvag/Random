@@ -59,9 +59,7 @@ def text(user,eord):
     if eord == 'D' or eord == 'd':
         z = user.split(' ')
         for item in z:
-            if item == '':
-                pass
-            else:
+            if item != '':
                 x.append(item)
         decrypt(x)
 
@@ -78,9 +76,7 @@ def extract(file,eord):
             for line in file2:
                 b = line.split(' ')
                 for item in b:
-                    if item == '':
-                        pass
-                    else:
+                    if item != '':
                         c.append(str(item))
             decrypt(c)
 
