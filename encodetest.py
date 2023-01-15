@@ -1,3 +1,6 @@
+from tkinter import *
+window = Tk()
+
 def password():
     password = str(input('Enter the encryption password:\n'))
     b=[]
@@ -83,7 +86,10 @@ def extract(file,eord):
 
 def main(w,x,y,z):
     while True:
-        eord = str(w)
+        eord = Entry(window, text='Are you encrypting or decrypting? <E> to encrypt, <D> to decrypt, <Q> to quit:\n',bd=5)
+        eord.place(x=50,y=50)
+        eordlabel = Label(window, text='Are you encrypting or decrypting? <E> to encrypt, <D> to decrypt, <Q> to quit', fg='black',font=("Times New Roman", 12))
+        eordlabel.place(x=50,y=25)
         if eord == 'Q' or eord == 'q':
             break
         else:
