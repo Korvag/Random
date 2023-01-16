@@ -45,62 +45,74 @@ def password():
     return(number,number2)
 
 
-def encrypt(z): 
-    file1 = window('Enter the file path of the file to save the encrypted data to:\n')
-    with open(file1,'w') as file:
-        file.close()
+def encrypt(z,output): 
     f=[]
     number,number2=password()
-    with open(file1,'a') as file:
-        for item in z:
-            f.append(int((int(item) + number) * number2))
+    for item in z:
+        f.append(int((int(item) + number) * number2))
+
+    if output == 'F' or output == 'f':
+        file1 = window('Enter the file path of the file to save the encrypted data to:\n')
+        with open(file1,'w') as file:
+            file.close()
+        with open(file1,'a') as file:
+            for i in f:
+                file.write(str(i)+' ')
+    if output == 'T' or output == 't':
         for i in f:
-            file.write(str(i)+' ')
+            print(str(i)+' ')
 
 
 
-def decrypt(z):
+def decrypt(z,output):
     f=[]
-    g=[]
     number,number2=password()
-    
+
     for item in z:
         f.append(chr(int((int(item)/number2)-number)))
-    for item in f:
-        print(item,end='')
+    if output == 'T' or output == 't':
+        for item in f:
+            print(item,end='')
+    if output == 'F' or output == 'f':
+        file = window('Enter the full path for the file:\n')
+        with open(file,'w') as file1:
+            file1.close()
+        with open(file,'a') as file1:
+            for item in f:
+                file1.write(item)
     print()
 
 
-def text(user,eord):
+def text(user,eord,output):
     z=[]
     x=[]
     if eord == 'E' or eord == 'e':
         for letter in user:
             z.append(ord(letter))
-        encrypt(z)
+        encrypt(z,output)
     if eord == 'D' or eord == 'd':
         z = user.split(' ')
         for item in z:
             if item != '':
                 x.append(item)
-        decrypt(x)
+        decrypt(x,output)
 
 
-def extract(file,eord):
+def extract(file,eord,output):
     with open(file,'r') as file2:
         c=[]
         b=[]
         if eord == 'E' or eord == 'e':
             for line in file2:
                 c.append(str(line))
-            encrypt(c)
+            encrypt(c,output)
         if eord == 'D' or eord == 'd':
             for line in file2:
                 b = line.split(' ')
                 for item in b:
                     if item != '':
                         c.append(str(item))
-            decrypt(c)
+            decrypt(c,output)
 
 
 def main():
@@ -110,12 +122,13 @@ def main():
             break
         else:
             data = window('Are you encrypting text or a file? <T> for text or <F> for a file:\n')
+            output = window('Would you like the output as text or a file? <T> for text or <F> for a file:\n')
             if data == 't':
                 user = window("Enter the text:\n")
-                text(user,eord)
+                text(user,eord,output)
             if data == 'f':
                 file = window('Enter the full file path:\n')
-                extract(file,eord)
+                extract(file,eord,output)
 
 if __name__ == '__main__':
     main()
