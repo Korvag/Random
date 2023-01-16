@@ -81,18 +81,18 @@ def extract(file,eord):
             decrypt(c)
 
 
-def main(w,x,y,z):
+def main():
     while True:
-        eord = str(w)
+        eord = str(input('Are you encrypting or decrypting? <E> to encrypt, <D> to decrypt, <Q> to quit:\n'))
         if eord == 'Q' or eord == 'q':
             break
         else:
-            data = str(x)
+            data = str(input('Are you encrypting white text or a file? Enter <t> for text or <f> for a file:\n'))
             if data == 't':
-                user = str(y)
+                user = str(input('Enter the text:\n'))
                 text(user,eord)
             if data == 'f':
-                file = str(z)
+                file = str(input('Enter the full file path:\n'))
                 extract(file,eord)
 
 if __name__ == '__main__':
