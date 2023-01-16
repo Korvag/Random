@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+import pyperclip
 sg.theme('BluePurple')
 
 
@@ -19,6 +20,21 @@ def window(text):
             window.close()
             return values['-IN-']
 
+def outputtext(g):
+    user = ''
+    for i in g:
+        user = user + ' ' + i
+    layout =    [[sg.Text('Output: ' + user + '\nThe output was saved to your clipboard.'),
+                sg.Text(size=(15,1), key=user)],
+                [sg.Button('Copy'),sg.Button('Close')]]
+    window = sg.Window('Output',layout)
+    while True:
+        event,values=window.read()
+        if event in (None,'Close'):
+            break
+        if event == 'Copy':
+            pyperclip.copy(user)
+    window.close()
 
 def password():
     password = window('Enter the encryption password:\n')
@@ -47,6 +63,7 @@ def password():
 
 def encrypt(z,output): 
     f=[]
+    g=[]
     number,number2=password()
     for item in z:
         f.append(int((int(item) + number) * number2))
@@ -60,7 +77,8 @@ def encrypt(z,output):
                 file.write(str(i)+' ')
     if output == 'T' or output == 't':
         for i in f:
-            print(str(i)+' ')
+            g.append(str(i)+' ')
+        outputtext(g)
 
 
 
