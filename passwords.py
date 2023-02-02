@@ -59,6 +59,11 @@ def decrypt(f):
     return(user,b)
 
 
+def decrypt2(user,b,c,d):
+    print(user, '| ', end ='')
+    for item in b:
+        print(chr((int(item) // d) - c), end = '')
+    print('\n')
 
 def view(c,d):
     account = input('Which account are you looking for? all for all accounts, account name for specific account:\n')
@@ -66,16 +71,10 @@ def view(c,d):
         for line in f.readlines():
             if account.lower() == 'all':
                 user,b = decrypt(line)
-                print(user, '| ', end ='')
-                for item in b:
-                    print(chr((int(item) // d) - c), end = '')
-                print('\n')
+                decrypt2(user,b,c,d)
             elif line.startswith(account):
                 user,b = decrypt(line)
-                print(user, '| ', end ='')
-                for item in b:
-                    print(chr((int(item) // d) - c), end = '')
-                print('\n')
+                decrypt2(user,b,c,d)
 
 
 
