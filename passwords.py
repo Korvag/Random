@@ -66,14 +66,16 @@ def view(c,d):
         for line in f.readlines():
             if account.lower() == 'all':
                 user,b = decrypt(line)
+                print(user, '| ', end ='')
+                for item in b:
+                    print(chr((int(item) // d) - c), end = '')
+                print('\n')
             elif line.startswith(account):
                 user,b = decrypt(line)
-
-            print(user, '| ', end ='')
-            for item in b:
-                print(chr((int(item) // d) - c), end = '')
-            print('\n')
-    print('\n\n')
+                print(user, '| ', end ='')
+                for item in b:
+                    print(chr((int(item) // d) - c), end = '')
+                print('\n')
 
 
 
@@ -84,7 +86,6 @@ def main():
 
     while True:
         mode = input('Do you want to add or view a password?  add, view, or q to quit:\n').lower()
-        print('\n')
         if mode == 'q':
             break
 
