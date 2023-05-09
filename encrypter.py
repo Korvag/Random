@@ -103,10 +103,10 @@ def main():
         else:
             data = input('Are you encrypting text or a file? <T> for text or <F> for a file:\n')
             output = input('Would you like the output as text or a file? <T> for text or <F> for a file:\n')
-            if data == 't':
+            if data == 't' or data == 'T':
                 user = input("Enter the text:\n")
                 text(user,eord,output)
-            if data == 'f':
+            if data == 'f' or data == 'F':
                 file = input('Enter the full file path:\n')
                 extract(file,eord,output)
 
