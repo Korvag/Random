@@ -1,21 +1,4 @@
-from cryptography.fernet import Fernet
-
-def load_key():
-    file = open('key.key','rb')
-    key = file.read()
-    file.close()
-    return key
-
-
-key = load_key()
-fer = Fernet(key)
-print (fer)
-print (key)
-
-'''def write_key():
-    key = Fernet.generate_key()
-    with open ('key.key','wb') as key_file:
-        key_file.write(key)'''
+import encryptionmod
 
 
 def view():
@@ -26,23 +9,32 @@ def view():
             print ('User:',user,'| Password:',fer.decrypt(passw.encode()).decode())
 
 
-def add():
+def add(number,number2,mode):
     name = input('Account Name:  ')
     pwd = input('Password:  ')
+    encryptionmod.text(pwd,mode)
 
     with open ('password.txt','a') as f:
-        f.write(name + '|' + str(fer.encrypt(pwd.encode())) + '\n')
+        f.write(name + '|' + str((int(pwd) + number) * number2) + '\n')
 
 
-while True:
-    mode = input('Would you like to add a new password, or view existing passwords?  (add, view, q to quit)  ').lower()
-    if mode == 'q':
-        break
+def main():
+    password = input('What is the master password?  ')
+    number,number2 = encryptionmod.password(password)
+    while True:
+        mode = input('Would you like to add a new password, or view existing passwords?  (add, view, q to quit)  ').lower()
+        if mode == 'q':
+            break
 
-    if mode == 'add':
-        add()
-    elif mode == 'view':
-        view()
-    else:
-        print('That\'s not an option')
+        if mode == 'add':
+            add(number,number2,mode)
+        elif mode == 'view':
+            view(number,number2)
+        else:
+            print('That\'s not an option')
+
+
+
+if __name__ == '__main__':
+    main()
 
