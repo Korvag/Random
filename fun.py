@@ -7,6 +7,8 @@ okButton = QPushButton('Ok')
 cancelButton = QPushButton('Cancel')
 test = QLineEdit()
 test.setEchoMode(QLineEdit.Password)
+word = test
+print (str(test))
 label = QLabel('Subscribe')
 label.setFont(QFont('Arial',20))
 
