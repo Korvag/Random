@@ -33,6 +33,7 @@ class userPass(App):
             padding_y=(30,30),
             size_hint=(1,0.7),
             font_size = (12)
+            
         )
         self.window.add_widget(self.password)
 
