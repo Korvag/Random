@@ -16,7 +16,7 @@ class scaffold():
     def man(count):
         scaffold = ["______\n",  "___|___\n",  "   |\n",  " * |\n",  "  __\n",  "/|\\|\n",  "/ \\|\n",  " | |\n",  "/| |\n",  "/  |\n"]
         if count == 1:
-            return('\n' + scaffold[0])
+            return('\n\n\n\n' + scaffold[0])
         elif count == 2:
             return ("\n" + scaffold[2] + scaffold[2] + scaffold[2] + scaffold[1])
         elif count == 3:
@@ -48,11 +48,12 @@ class guessing():
                 break
             guess = input("Guess a letter, or 1 to quit:  ")
             if guess == '1':
+                os.system("cls")
                 exit()
-                cont = 'n'
 
             if guess in guessed:
                 print("Already guessed.  Try again.")
+                time.sleep(1)
             elif guess in letters:
                 indexes = [index for (index,item) in enumerate(letters) if item == guess]
                 for item in indexes:
@@ -62,8 +63,10 @@ class guessing():
                 print("Wrong!")
                 count += 1
                 guessed.append(guess)
-            print(scaffold.man(count))
+                time.sleep(1)
 
+            os.system("cls")
+            print(scaffold.man(count))
             for item in guesses:
                 print(item,end=" ")
             print()
@@ -71,7 +74,8 @@ class guessing():
         if guess == '1':
             os.system("cls")
         elif count == 9:
-            print("\nYou lose!")
+            print(f"\nYou lose!\nThe word was {word}")
+            time.sleep(5)
         else:
             print("Congrats! You guessed the word!\n")
             time.sleep(5)
@@ -85,9 +89,12 @@ def main():
     guess = '0'
 
     while guess != '1':
+        os.system("cls")
         word,word_disp = word_gen.wordgen()
+        print("\n\n\n\n\n")
         print(word_disp)
         guess = guessing.guess(word)
+    os.system("cls")
 
 
 if __name__ == "__main__":
