@@ -16,7 +16,7 @@ while True:
     guessed = []
 
     count = 0
-    scaffold = ["______\n","___|___\n","   |\n"," * |\n","  __\n","/|\\|\n","/ \\|\n"]
+    scaffold = ["______\n",  "___|___\n",  "   |\n",  " * |\n",  "  __\n",  "/|\\|\n",  "/ \\|\n",  " | |\n",  "/| |\n",  "/  |\n"]
 
     while "_" in guesses:
         
@@ -34,12 +34,22 @@ while True:
             print (scaffold[4],scaffold[3],scaffold[2],scaffold[2],scaffold[1])
         elif count == 5:
             print ()
-            print (scaffold[4],scaffold[3],scaffold[5],scaffold[2],scaffold[1])
+            print (scaffold[4],scaffold[3],scaffold[7],scaffold[2],scaffold[1])
         elif count == 6:
+            print ()
+            print (scaffold[4],scaffold[3],scaffold[8],scaffold[2],scaffold[1])
+        elif count == 7:
+            print()
+            print (scaffold[4],scaffold[3],scaffold[5],scaffold[2],scaffold[1])
+        elif count == 8:
+            print ()
+            print (scaffold[4],scaffold[3],scaffold[5],scaffold[9],scaffold[1])
+        elif count == 9:
             print ()
             print (scaffold[4],scaffold[3],scaffold[5],scaffold[6],scaffold[1])
             print ("You Lose!")
             print (f"The word was {word}")
+            time.sleep(5)
             break
 
         guess = input("guess a letter or 1 to quit:  ")
@@ -64,7 +74,10 @@ while True:
             print(item,end = " ")
         print ()
     if guess == '1':
+        os.system("cls")
         break
+    elif count == 9:
+        print('\n')
     else:
         print("Congrats! You got the word\n")
         time.sleep(5)
