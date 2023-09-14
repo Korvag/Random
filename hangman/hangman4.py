@@ -1,0 +1,95 @@
+import os
+from english_words import get_english_words_set
+import random
+import time
+
+class word_gen():
+
+    def wordgen():
+        word = random.choice(list(get_english_words_set(['gcide'], lower = True)))
+        word_disp = ("word:  " + "_ " * len(word))
+        return (word,word_disp)
+
+
+class scaffold():
+
+    def man(count):
+        scaffold = ["______\n",  "___|___\n",  "   |\n",  " * |\n",  "  __\n",  "/|\\|\n",  "/ \\|\n",  " | |\n",  "/| |\n",  "/  |\n"]
+        if count == 1:
+            return('\n' + scaffold[0])
+        elif count == 2:
+            return ("\n" + scaffold[2] + scaffold[2] + scaffold[2] + scaffold[1])
+        elif count == 3:
+            return (scaffold[4] + scaffold[2] + scaffold[2] + scaffold[2] + scaffold[1])
+        elif count == 4:
+            return (scaffold[4] + scaffold[3] + scaffold[2] + scaffold[2] + scaffold[1])
+        elif count == 5:
+            return (scaffold[4] + scaffold[3] + scaffold[7] + scaffold[2] + scaffold[1])
+        elif count == 6:
+            return (scaffold[4] + scaffold[3] + scaffold[8] + scaffold[2] + scaffold[1])
+        elif count == 7:
+            return (scaffold[4] + scaffold[3] + scaffold[5] + scaffold[2] + scaffold[1])
+        elif count == 8:
+            return (scaffold[4] + scaffold[3] + scaffold[5] + scaffold[9] + scaffold[1])
+        elif count == 9:
+            return (scaffold[4] + scaffold[3] + scaffold[5] + scaffold[6] + scaffold[1])
+        
+
+class guessing():
+    
+    def guess(word):
+        letters = list(word)
+        guesses = list("_" * len(word))
+        guessed = []
+        count = 0
+
+        while "_" in guesses:
+            if count == 9:
+                break
+            guess = input("Guess a letter, or 1 to quit:  ")
+            if guess == '1':
+                exit()
+                cont = 'n'
+
+            if guess in guessed:
+                print("Already guessed.  Try again.")
+            elif guess in letters:
+                indexes = [index for (index,item) in enumerate(letters) if item == guess]
+                for item in indexes:
+                    guesses[item] = guess
+                guessed.append(guess)
+            else:
+                print("Wrong!")
+                count += 1
+                guessed.append(guess)
+            print(scaffold.man(count))
+
+            for item in guesses:
+                print(item,end=" ")
+            print()
+        
+        if guess == '1':
+            os.system("cls")
+        elif count == 9:
+            print("\nYou lose!")
+        else:
+            print("Congrats! You guessed the word!\n")
+            time.sleep(5)
+        return (guess)
+
+        
+
+        
+
+def main():
+    guess = '0'
+
+    while guess != '1':
+        word,word_disp = word_gen.wordgen()
+        print(word_disp)
+        guess = guessing.guess(word)
+
+
+if __name__ == "__main__":
+    main()
+
