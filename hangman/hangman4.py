@@ -15,7 +15,9 @@ class scaffold():
 
     def man(count):
         scaffold = ["______\n",  "___|___\n",  "   |\n",  " * |\n",  "  __\n",  "/|\\|\n",  "/ \\|\n",  " | |\n",  "/| |\n",  "/  |\n"]
-        if count == 1:
+        if count == 0:
+            return('\n\n\n\n\n')
+        elif count == 1:
             return('\n\n\n\n' + scaffold[0])
         elif count == 2:
             return ("\n" + scaffold[2] + scaffold[2] + scaffold[2] + scaffold[1])
