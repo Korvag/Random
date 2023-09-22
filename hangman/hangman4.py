@@ -14,7 +14,7 @@ class word_gen():
 class scaffold():
 
     def man(count):
-        scaffold = ["______\n",  "___|___\n",  "   |\n",  " * |\n",  "  __\n",  "/|\\|\n",  "/ \\|\n",  " | |\n",  "/| |\n",  "/  |\n"]
+        scaffold = ["______\n",  "___|___\n",  "   |\n",  " o |\n",  "  __\n",  "/|\\|\n",  "/ \\|\n",  " | |\n",  "/| |\n",  "/  |\n"]
         if count == 0:
             return('\n\n\n\n\n')
         elif count == 1:
