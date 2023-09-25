@@ -35,10 +35,10 @@ def load_frame1():
 
 def load_frame2():
     frame2.tkraise()
-    logo_img = ImageTk.PhotoImage(file="C:\Random\hangman\logos\main.png")
-    logo_widget = tk.Label(frame2, image=logo_img, bg=bg_color)
-    logo_widget.image = logo_img
-    logo_widget.pack(pady=20)
+    #logo_img = ImageTk.PhotoImage(file="C:\Random\hangman\logos\main.png")
+    #logo_widget = tk.Label(frame2, image=logo_img, bg=bg_color)
+    #logo_widget.image = logo_img
+    #logo_widget.pack()
 
     tk.Label(frame2, 
         text="Time to Die!", 
@@ -46,15 +46,20 @@ def load_frame2():
         fg="white", 
         font=("TkHeadingFont",20)).pack(pady=25)
     
-    scaffold,word,error = hangman4.main()
+    #scaffold,word,error = hangman4.main()
 
-    tk.Label(
+    """tk.Label(
         frame2,
         text = scaffold + word + error,
         bg=bg_color,
         fg="white",
         font=("TkMenuFont",12)
-        ).pack()
+        ).pack()"""
+    
+    input = tk.Text(
+            frame2,
+            height = 5,
+            width = 20).pack()
     
     """tk.Button(frame2,
               text="BEGIN!",
