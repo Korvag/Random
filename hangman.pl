@@ -9,11 +9,14 @@ $word = <>;
 @guesses = ();
 
 $num1 = $#spaces+1;
-$letters = @letters;
-$spaces = @spaces;
+#$letters = join("",@letters);
+#$spaces = join("",@spaces);
 
 
-while ($spaces ne $letters){
+print "$letters\n$spaces\n";
+
+
+while (@spaces =~ /_/){
 	print "Guess a letter: ";
 	$guess = <>;
 
@@ -25,7 +28,8 @@ while ($spaces ne $letters){
 	while ($index > 0){
 		if (@letters[$num] eq $guess){
 			@spaces[$num] = $guess;
-			$spaces = @spaces;
+			#$spaces = join("",@spaces);
+			#print "$spaces\n";
 			} 
 		$num++;
 		$index--;
