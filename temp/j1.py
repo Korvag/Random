@@ -14,34 +14,26 @@ while True:
         break
 
 connectionString = f'DRIVER={{SQL Server}};SERVER=JICEX;DATABASE=TmsEPrd;UID={user};PWD={current}'
-#print(connectionString)
 conn = pyodbc.connect(connectionString)
 
-#user = "'"+user+"'"
 current = "'"+current+"'"
 
-#sql_query = f"""
-#set nocount on
-#declare  @return varchar(max)
-#exec @return = stu_password_reset @user={user}, @confirm={confirm}, @current={current}
-#select @return as 'return'
-#"""
-
 sql_query=f"""
-declare @error varchar(max)
+declare @return varchar(max)
 begin try
-alter login {user} with password={confirm} old_password={current}
+	alter login {user} with password={confirm} old_password={current}
 end try
 begin catch
-select error_message()
+	select @return = error_message()
 end catch
+select @return = isnull(@return,'Password reset')
+select @return
 """
-
 
 cursor = conn.cursor()
 cursor.execute(sql_query)
-#error = cursor.fetchall()
-#print(error[0])
+error = cursor.fetchall()
+print(error[0])
 
 conn.commit()
 cursor.close()
