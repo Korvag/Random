@@ -9,6 +9,11 @@ def wordgen():
     word_disp = ("word:  " + "_ " * len(word))
     return (word,word_disp)
 
+def wordenter():
+    word = lower(str(input("Enter a word: ")))
+    word_disp = ("word: " + "_ " * len(word))
+    return (word,word_disp)    
+
 
 
 def man(count):
@@ -87,9 +92,16 @@ def guessing(word):
 def main():
     guess = '0'
 
+    players = int(input("1 or 2 players?  "))
+
     while guess != '1':
         os.system("cls")
-        word,word_disp = wordgen()
+
+        if players == 1:
+            word,word_disp = wordgen()
+        if player == 2:
+            word,word_disp = wordenter()
+
         print("\n\n\n\n\n")
         print(word_disp)
         guess = guessing(word)
