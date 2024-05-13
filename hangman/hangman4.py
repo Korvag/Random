@@ -99,7 +99,7 @@ def main():
 
         if players == 1:
             word,word_disp = wordgen()
-        if player == 2:
+        if players == 2:
             word,word_disp = wordenter()
 
         print("\n\n\n\n\n")
