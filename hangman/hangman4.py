@@ -12,6 +12,7 @@ def wordgen():
 def wordenter():
     word = lower(str(input("Enter a word: ")))
     word_disp = ("word: " + "_ " * len(word))
+    os.system("cls")
     return (word,word_disp)    
 
 
